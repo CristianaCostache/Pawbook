@@ -1,0 +1,27 @@
+.ui-w-40 {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.body {
+    background-color: rgb(229, 241, 241);
+}

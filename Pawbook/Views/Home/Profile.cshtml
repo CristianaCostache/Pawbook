@@ -1,0 +1,162 @@
+﻿@model IEnumerable<Pawbook.ViewModels.FeedItem>
+
+@{
+	ViewData["Title"] = "Profile";
+}
+
+<link rel="stylesheet" href="~/css/feed.css" asp-append-version="true" />
+
+<div class="w-100">
+	<div class="container my-3 feeditem">
+		<div class="row">
+			<div class="col-md">
+				<div class="card mb-4">
+					<div class="card-body">
+						<img class="card-img-top w-25 rounded mx-auto d-block" src="@Url.Content("~/img/profile/" + @Model.First().User.ImageName)">
+						<div class="d-flex justify-content-center">
+							<h2>@Model.First().User.Name</h2>
+						</div>
+						<div class="d-flex justify-content-around ">
+							<div>
+								<h3>
+									<i class='@(String.Format("{0}{1}", "fa-solid fa-", @Model.First().User.Type.ToString().ToLower()))'></i>
+								</h3>
+							</div>
+							<div>
+								<h3>
+									<i class="fa-solid fa-person "></i> @Model.First().User.OwnerName
+								</h3>
+							</div>
+							<div>
+								<h3>
+									@{
+										switch (@Model.First().User.Gender)
+										{
+											case Pawbook.Models.Gender.Female:
+												<i class="fa-solid fa-mars-and-venus"></i>
+												break;
+											case Pawbook.Models.Gender.Male:
+												<i class="fa-solid fa-mars"></i>
+												break;
+											default:
+												break;
+										}
+									}
+								</h3>
+							</div>
+						</div>
+					</div>
+					<div class="btn-group">
+						@if (@Model.First().User.UserId == 5)
+						{
+							<a asp-controller="User" asp-action="Edit" asp-route-id=@Model.First().User.UserId class="btn btn-success">
+								Modify profile
+							</a>
+						}
+						<button type="button" class="btn btn-outline-success ">Follow</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	@{
+		bool exist = false;
+	}
+
+	@foreach (var feedItem in Model)
+	{
+		if (feedItem.Post != null)
+		{
+			exist = true;
+			<div class="container my-3 feeditem">
+				<div class="row">
+					<div class="col-md">
+						<div class="card mb-4">
+							<div class="card-body">
+								<div class="media mb-3 d-flex justify-content-between">
+									<div>
+										<a asp-controller="Home" asp-action="Profile" asp-route-userId=@feedItem.User.UserId class="a">
+											<img src="@Url.Content("~/img/profile/" + feedItem.User.ImageName)" class="d-inline-block ui-w-40 rounded-circle" alt="profileImg">
+											<div class="media-body ml-3 d-inline-block">
+												<div class="flex-grow-1 ms-3">
+													@Html.DisplayFor(modelItem => feedItem.User.Name)
+													<div class="text-muted small">@Convert.ToDateTime(feedItem.Post.CreatedAt).ToString("hh:mm tt dd MMMM yyyy")</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								</div>
+								<p>
+									@Html.DisplayFor(modelItem => feedItem.Post.Description)
+								</p>
+								<div class="card">
+									<img class="card-img-top" src="@Url.Content("~/img/post/" + feedItem.Post.ImageName)" alt="postImg">
+								</div>
+								<div class="container d-flex justify-content-between mt-3">
+									<div class="col-md-3">
+										@if (feedItem.CommentsNumber > 0)
+										{
+											<a asp-controller="Paw" asp-action="Index" asp-route-postId=@feedItem.Post.PostId class="a">
+												@Html.DisplayFor(modelItem => feedItem.PawsNumber) Paws
+											</a>
+										}
+										else
+										{
+											<a disabled class="a">@Html.DisplayFor(modelItem => feedItem.PawsNumber) Paws</a>
+										}
+									</div>
+									<div class="col-md-3">
+										@if (feedItem.CommentsNumber > 0)
+										{
+											<a asp-controller="Comment" asp-action="Index" asp-route-postId=@feedItem.Post.PostId class="a">
+												@Html.DisplayFor(modelItem => feedItem.CommentsNumber) Comments
+											</a>
+										}
+										else
+										{
+											<a disabled class="a">@Html.DisplayFor(modelItem => feedItem.CommentsNumber) Comments</a>
+										}
+									</div>
+								</div>
+							</div>
+							<div class="card-footer">
+								<div class="d-flex justify-content-around">
+
+									@if (feedItem.pawed == true)
+									{
+										<a disabled><h3><i class="fa-solid fa-paw"></i></h3></a>
+									}
+									else
+									{
+										<a asp-controller="Paw" asp-action="Create" asp-route-postId=@feedItem.Post.PostId>
+											<h3><i class="fa-solid fa-paw"></i></h3>
+										</a>
+									}
+									<a asp-controller="Comment" asp-action="Create" asp-route-postId=@feedItem.Post.PostId>
+										<h3><i class="fa-regular fa-comment"></i></h3>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+	}
+</div>
+
+@if (exist == false)
+{
+	<div class="container my-3 feeditem">
+		<div class="row">
+			<div class="col-md">
+				<div class="card mb-4">
+					<div class="card-body align-content-center">
+						No posts available yet
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

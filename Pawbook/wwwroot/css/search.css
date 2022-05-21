@@ -1,0 +1,9 @@
+.a {
+    text-decoration: none;
+    color: black;
+}
+
+.ui-w-40 {
+    width: 60px !important;
+    height: 60px !important;
+}

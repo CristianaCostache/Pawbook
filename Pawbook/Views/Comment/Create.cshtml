@@ -1,0 +1,30 @@
+﻿@model Pawbook.Models.Comment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<link rel="stylesheet" href="~/css/feed.css" asp-append-version="true" />
+
+<div class="w-100">
+	<div class="container-fluid my-3 feeditem">
+		<div class="card col-md">
+			<div class="card-body">
+				<h5 class="card-title">Add a new comment</h5>
+				<form method="post" enctype="multipart/form-data">
+					<div class="form-group">
+						<label asp-for="Body">Type here</label>
+						<textarea asp-for="Body" name="Body" type="text" class="form-control my-2" rows="1"></textarea>
+					</div>
+					<div class="my-3">
+						<button type="submit" class="btn btn-primary">Add</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

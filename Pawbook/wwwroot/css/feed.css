@@ -1,0 +1,37 @@
+﻿.a {
+    text-decoration: none;
+    color: black;
+}
+
+.aa {
+    text-decoration: none;
+    color: white;
+}
+
+.ui-w-40 {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+.ui-bg-cover {
+    background-color: transparent;
+    background-position: center center;
+    background-size: cover;
+}
+
+.ui-rect {
+    position: relative !important;
+    display: block !important;
+    padding-top: 100% !important;
+    width: 100% !important;
+}
+
+.feeditem {
+    width: 50%;
+}
+
+@media only screen and (max-width: 900px) {
+    .feeditem {
+        width: 100%;
+    }
+}

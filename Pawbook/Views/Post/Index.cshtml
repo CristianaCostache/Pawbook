@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Pawbook.Models.Post>
+
+@{
+	ViewData["Title"] = "Feed";
+}
+
+<h1>Index</h1>
+
+<p>
+	<a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Description)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ImageName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CreatedAt)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Description)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ImageName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CreatedAt)
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
+					<a asp-action="Details" asp-route-id="@item.PostId">Details</a> |
+					<a asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@foreach (var item in Model)
+{
+	<div class="container my-3 feeditem">
+		<div class="row">
+			<div class="col-md">
+				<div class="card mb-4">
+					<div class="card-body">
+						<div class="media mb-3 d-flex justify-content-between">
+							<div>
+								<a asp-controller="User" asp-action="Profile" class="a">
+									<img src=@Html.DisplayFor(modelItem => item.ImageName) class="d-inline-block ui-w-40 rounded-circle" alt="">
+									<div class="media-body ml-3 d-inline-block">
+										<div class="flex-grow-1 ms-3">
+											@Html.DisplayFor(modelItem => item.UserId)
+											<div class="text-muted small">10 min ago</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<p>
+							@Html.DisplayFor(modelItem => item.Description)
+							@Html.DisplayFor(modelItem => item.ImageName)
+						</p>
+						<div class="card">
+							<img class="card-img-top" src="@Url.Content("~/img/post/" + @Html.DisplayFor(modelItem => item.ImageName))">
+						</div>
+					</div>
+					<div class="card-footer">
+						<div class="d-flex justify-content-between">
+							<a href="#" type="submit" class="">
+								<h2><i class="fa-solid fa-paw"></i></h2>
+							</a>
+							<h3>20 paws</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

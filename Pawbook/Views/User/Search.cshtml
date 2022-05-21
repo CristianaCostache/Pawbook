@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Pawbook.Models.User>
+
+@{
+	ViewData["Title"] = "Search";
+}
+
+<link rel="stylesheet" href="~/css/search.css" asp-append-version="true" />
+
+<div class="d-flex justify-content-center w-100">
+	<form class="form-row d-flex w-50 my-3">
+		<input class="form-control" type="text" name="searchTerm" placeholder="Search" aria-label="Search">
+		<button class="btn btn-outline-info" formmethod="post" type="submit">Search</button>
+	</form>
+</div>
+
+@{
+	bool found = false;
+}
+@foreach (var user in Model)
+{
+	found = true;
+	<div class="container my-1 feeditem">
+		<div class="row">
+			<div class="col-md">
+				<div class="card mb-4">
+					<div class="card-body">
+						<div class="media mb-2 d-flex justify-content-start">
+							<div>
+								<a asp-controller="Home" asp-action="Profile" asp-route-userId=@user.UserId class="a">
+									<img src="@Url.Content("~/img/profile/" + user.ImageName)" class="d-inline-block ui-w-40 rounded-circle" alt="profileImg">
+									<div class="media-body ml-3 d-inline-block">
+										<div class="flex-grow-1 ms-3">
+											@Html.DisplayFor(modelItem => user.Name)
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="card-body">
+								<div class="d-flex justify-content-around">
+									<div>
+										<i class='@(String.Format("{0}{1}", "fa-solid fa-", user.Type.ToString().ToLower()))'></i>
+									</div>
+									<div>
+										<i class="fa-solid fa-person"></i> @Html.DisplayFor(modelItem => user.OwnerName)
+									</div>
+									<div>
+										@{
+											switch (user.Gender)
+											{
+												case Pawbook.Models.Gender.Female:
+													<i class="fa-solid fa-venus"></i>
+													break;
+												case Pawbook.Models.Gender.Male:
+													<i class="fa-solid fa-mars"></i>
+													break;
+												default:
+													break;
+											}
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+@if (found == false)
+{
+	<div class="container my-3 feeditem">
+		<div class="row">
+			<div class="col-md">
+				<div class="card mb-4">
+					<div class="card-body align-content-center">
+						No PAW found. Try again!
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

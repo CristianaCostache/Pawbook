@@ -1,0 +1,36 @@
+﻿@model Pawbook.Models.Post
+
+@{
+	ViewData["Title"] = "Create";
+}
+
+<link rel="stylesheet" href="~/css/feed.css" asp-append-version="true" />
+
+<div class="w-100">
+	<div class="container-fluid my-3 feeditem">
+		<div class="card col-md">
+			<div class="card-body">
+				<h5 class="card-title">What is new?</h5>
+				<form method="post" enctype="multipart/form-data">
+					<div class="form-group">
+						<label asp-for="Description">Description</label>
+						<textarea asp-for="Description" name="Description" type="text" class="form-control" rows="1"></textarea>
+					</div>
+					<div class="my-auto">
+						<label asp-for="ImageFile" class="form-label">Insert image</label>
+						<input asp-for="ImageFile" accept="image/*" name="ImageFile" type="file" class="form-control" id="formFile">
+					</div>
+					<div class="my-3">
+						<button type="submit" class="btn btn-primary">Post</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+    @{
+	await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
