@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pawbook.Models;
 
@@ -11,9 +12,10 @@ using Pawbook.Models;
 namespace Pawbook.Migrations
 {
     [DbContext(typeof(PawbookContext))]
-    partial class PawbookContextModelSnapshot : ModelSnapshot
+    [Migration("20220521145241_AddUserRole")]
+    partial class AddUserRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

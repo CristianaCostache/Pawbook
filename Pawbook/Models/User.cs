@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pawbook.Models
 {
@@ -19,11 +20,19 @@ namespace Pawbook.Models
             Haterships = new List<Hatership>();
         }
 
+        public const string USER_ROLE_ADMIN = "Admin";
+        public const string USER_ROLE_USER = "User";
         public int UserId { get; set; }
 
         public string Email { get; set; }
 
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         public string Password { get; set; }
+
+        [NotMapped]
+        [Compare("Password", ErrorMessage = "Confirm password doesn't match, type again!")]
+        public string ConfirmPassword { get; set; }
+        public string UserRole { get; set; }
 
         public string Name { get; set; }
 

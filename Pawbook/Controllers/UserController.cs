@@ -69,6 +69,52 @@ namespace Pawbook.Controllers
             return View(user);
         }
 
+        // GET: Users/Register
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        // POST: Users/Register
+        [HttpPost]
+        public IActionResult Register([FromForm] User user)
+        {
+            if (_userService.UserExist(user))
+            {
+                ModelState.AddModelError(string.Empty, "Email is already used");
+                return View();
+            }
+            _userService.Register(user);
+            return RedirectToAction("Feed", "Home");
+        }
+
+        // GET: Users/Login
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        // POST: Users/Login
+        [HttpPost]
+        public IActionResult Login([FromForm] User user)
+        {
+            if(_userService.UserExist(user) == false)
+            {
+                ModelState.AddModelError(string.Empty, "The email is not associated to a Pawbook account. Please register!");
+                return View();
+            }
+            if (_userService.PasswordMatch(user) == false)
+            {
+                ModelState.AddModelError(string.Empty, "Wrong password. Try again!");
+                return View();
+            }
+            User dbUser = _userService.GetUserByEmail(user.Email);
+
+            TempData["LoggedInUserId"] = dbUser.UserId;
+
+            return RedirectToAction("Feed", "Home");
+        }
+
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
