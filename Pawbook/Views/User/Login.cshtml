@@ -9,40 +9,41 @@
 
 
 <div class="container-fluid d-flex pt-5 my-5 w-75">
-        <div class="card col-md-4">
-            <img class="my-auto d-block w-100" src="~/img/logo_name.png">
-        </div>
-        <div class="card col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">Welcome back!</h5>
-                <form method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label asp-for="Email">Owner's email</label>
-                            <input asp-for="Email" class="form-control" placeholder="Email">
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-                    </div>
+	<div class="card col-md-4">
+		<img class="my-auto d-block w-100" src="~/img/logo_name.png">
+	</div>
+	<div class="card col-md-8">
+		<div class="card-body">
+			<h5 class="card-title">Welcome back!</h5>
+			<form method="post">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<div class="form-row">
+					<div class="form-group col">
+						<label asp-for="Email">Owner's email</label>
+						<input asp-for="Email" class="form-control" placeholder="Email">
+						<span asp-validation-for="Email" class="text-danger"></span>
+					</div>
+				</div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md">
-                            <label asp-for="Password">Password</label>
-                            <input asp-for="Password" class="form-control" type="password" placeholder="Password">
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-                    </div>
+				<div class="form-row">
+					<div class="form-group col-md">
+						<label asp-for="Password">Password</label>
+						<input asp-for="Password" class="form-control" type="password" placeholder="Password">
+						<span asp-validation-for="Password" class="text-danger"></span>
+					</div>
+				</div>
 
-                    <button type="submit" class="btn btn-primary">Log in</button>
+				<button type="submit" class="btn btn-primary">Log in</button>
 
-                    <div class="form-row my-3">
-                        <div class="form-group col-md">
-                            <p>Don't have an account?</p>
-                            <a href="signup.html" class="link-info">Create new account</a>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
+				<div class="form-row my-3">
+					<div class="form-group col-md">
+						<p>Don't have an account?</p>
+						<a asp-controller="User" asp-action="Register">
+							Create new account
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

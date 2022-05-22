@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Pawbook.ViewModels.FeedItem>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@model IEnumerable<Pawbook.ViewModels.FeedItem>
 
 @{
 	ViewData["Title"] = "Feed";
@@ -65,18 +68,20 @@
 					</div>
 					<div class="card-footer">
 						<div class="d-flex justify-content-around">
-
+							@{
+								var loggedInUserId = @HttpContextAccessor.HttpContext.Session.GetInt32("LoggedInUserId");
+							}
 							@if (feedItem.pawed == true)
 							{
 								<a disabled><h3><i class="fa-solid fa-paw"></i></h3></a>
 							}
 							else
 							{
-								<a asp-controller="Paw" asp-action="Create" asp-route-postId=@feedItem.Post.PostId>
+								<a asp-controller="Paw" asp-action="Create" asp-route-postId=@feedItem.Post.PostId asp-route-loggedInUserId=@loggedInUserId>
 									<h3><i class="fa-solid fa-paw"></i></h3>
 								</a>
 							}
-							<a asp-controller="Comment" asp-action="Create" asp-route-postId=@feedItem.Post.PostId>
+							<a asp-controller="Comment" asp-action="Create" asp-route-postId=@feedItem.Post.PostId asp-route-loggedInUserId=@loggedInUserId>
 								<h3><i class="fa-regular fa-comment"></i></h3>
 							</a>
 						</div>

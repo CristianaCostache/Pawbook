@@ -8,17 +8,19 @@ namespace Pawbook.Services
     {
         private IRepositoryWrapper _repositoryWrapper;
         private IPostService _postService;
+        private IUserService _userService;
 
-        public CommentService(IRepositoryWrapper repositoryWrapper, IPostService postService)
+        public CommentService(IRepositoryWrapper repositoryWrapper, IPostService postService, IUserService userService)
         {
             _repositoryWrapper = repositoryWrapper;
             _postService = postService;
+            _userService = userService;
         }
 
-        public void AddComment(Comment comment, int postId)
+        public void AddComment(Comment comment, int postId, int loggedInUserId)
         {
             Post post = _postService.GetById(postId);
-            User user = _repositoryWrapper.UserRepository.FindAll().FirstOrDefault(); // this will be modified
+            User user = _userService.GetUserById(loggedInUserId);
 
             comment.UserId = user.UserId;
             comment.User = user;

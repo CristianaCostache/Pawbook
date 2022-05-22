@@ -19,8 +19,13 @@ namespace Pawbook.Controllers
 
         public IActionResult Feed()
         {
-            List<FeedItem> feedItems = _feedItemService.GetAll();
-            return View(feedItems);
+            if (HttpContext.Session.GetInt32("LoggedInUserId") != null)
+            {
+                var loggedInUserId = HttpContext.Session.GetInt32("LoggedInUserId");
+                List<FeedItem> feedItems = _feedItemService.GetAll(loggedInUserId);
+                return View(feedItems);
+            }
+            return RedirectToAction("Login", "User");
         }
 
         public IActionResult Profile(int userId, int isLoggedUser)

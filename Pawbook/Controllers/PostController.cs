@@ -30,7 +30,8 @@ namespace Pawbook.Controllers
         [HttpPost]
         public IActionResult Create([FromForm] Post post)
         {
-            _postService.AddPost(post);
+            var loggedInUserId = HttpContext.Session.GetInt32("LoggedInUserId");
+            _postService.AddPost(post, loggedInUserId);
             return RedirectToAction("Feed", "Home");
         }
     }

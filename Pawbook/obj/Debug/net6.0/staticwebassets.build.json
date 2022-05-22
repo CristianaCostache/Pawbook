@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "73S4eIhQq9bqWdhn/k+RQ598lOR1CarTPNZu1xgN/uk=",
+  "Hash": "HnZQkiPQQhlMFCcVwSodVy9e9zh3MrhByVRmm/9VAS4=",
   "Source": "Pawbook",
   "BasePath": "_content/Pawbook",
   "Mode": "Default",
@@ -270,6 +270,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\post\\feed_pic_6_220509215611.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\CRISTIANA\\source\\repos\\Pawbook\\Pawbook\\wwwroot\\img\\post\\feed_pic_7_220522110711.jpg",
+      "SourceId": "Pawbook",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CRISTIANA\\source\\repos\\Pawbook\\Pawbook\\wwwroot\\",
+      "BasePath": "_content/Pawbook",
+      "RelativePath": "img/post/feed_pic_7_220522110711.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\post\\feed_pic_7_220522110711.jpg"
     },
     {
       "Identity": "C:\\Users\\CRISTIANA\\source\\repos\\Pawbook\\Pawbook\\wwwroot\\img\\post\\I was there_220509220300.jpg",

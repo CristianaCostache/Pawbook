@@ -21,6 +21,12 @@ namespace Pawbook.Services
             return user;
         }
 
+        public User GetUserById(int userId)
+        {
+            User user = _repositoryWrapper.UserRepository.FindByCondition(userItem => userItem.UserId == userId).FirstOrDefault();
+            return user;
+        }
+
         public List<User> GetUserByName(string searchString)
         {
             var users = new List<User>();

@@ -10,5 +10,6 @@ namespace Pawbook.Services.Interfaces
         void Register(User user);
         bool PasswordMatch(User user);
         User GetUserByEmail(string email);
+        User GetUserById(int userId);
     }
 }

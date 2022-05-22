@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Pawbook.Models.Comment>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@model IEnumerable<Pawbook.Models.Comment>
 
 @{
 	ViewData["Title"] = "Index";
@@ -49,7 +52,7 @@
 	</div>
 </div>
 <div class="d-flex justify-content-center">
-	<a asp-controller="Comment" asp-action="Create" asp-route-postId=@postId class="btn btn-primary">
+	<a asp-controller="Comment" asp-action="Create" asp-route-postId=@postId asp-route-loggedInUserId=@HttpContextAccessor.HttpContext.Session.GetInt32("LoggedInUserId") class="btn btn-primary">
 		<h3><i class="fa-regular fa-comment"></i> Add comment</h3>
 	</a>
 </div>

@@ -11,18 +11,20 @@ namespace Pawbook.Services
         private IPostService _postService;
         private IPawService _pawService;
         private ICommentService _commentService;
+        private IUserService _userService;
 
-        public FeedItemService(IRepositoryWrapper repositoryWrapper, IPostService postService, IPawService pawService, ICommentService commentService)
+        public FeedItemService(IRepositoryWrapper repositoryWrapper, IPostService postService, IPawService pawService, ICommentService commentService, IUserService userService)
         {
             _repositoryWrapper = repositoryWrapper;
             _postService = postService;
             _pawService = pawService;
             _commentService = commentService;
+            _userService = userService;
         }
 
-        public List<FeedItem> GetAll()
+        public List<FeedItem> GetAll(int? loggedInUserId)
         {
-            User user = _repositoryWrapper.UserRepository.FindAll().FirstOrDefault();
+            User user = _userService.GetUserById((int)loggedInUserId);
 
             List<FeedItem> feedItems = new List<FeedItem>();
             List<Post> posts = _repositoryWrapper.PostRepository.FindAll().ToList();
@@ -43,14 +45,8 @@ namespace Pawbook.Services
         public List<FeedItem> GetByUser(int userId, int isLoggedUser = 0)
         {
             User user = new User();
-            if (isLoggedUser == 1)
-            {
-                user = _repositoryWrapper.UserRepository.FindAll().FirstOrDefault();
-            }
-            else
-            {
-                user = _repositoryWrapper.UserRepository.FindByCondition(user =>user.UserId == userId).FirstOrDefault();
-            }
+            user = _repositoryWrapper.UserRepository.FindByCondition(user =>user.UserId == userId).FirstOrDefault();
+
             List<Post> posts = _postService.GetByUserId(user.UserId);
             posts.Reverse();
             List<FeedItem> feedItems = new List<FeedItem>();

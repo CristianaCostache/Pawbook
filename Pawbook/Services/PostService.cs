@@ -8,17 +8,19 @@ namespace Pawbook.Services
     {
         private IRepositoryWrapper _repositoryWrapper;
         private IWebHostEnvironment _webHostEnvironment;
+        private IUserService _userService;
 
-        public PostService(IRepositoryWrapper repositoryWrapper, IWebHostEnvironment webHostEnvironment)
+        public PostService(IRepositoryWrapper repositoryWrapper, IWebHostEnvironment webHostEnvironment, IUserService userService)
         {
             _repositoryWrapper = repositoryWrapper;
             _webHostEnvironment = webHostEnvironment;
+            _userService = userService;
         }
 
-        public void AddPost(Post post)
+        public void AddPost(Post post, int? loggedInUserId)
         {
             addImage(post);
-            User user = _repositoryWrapper.UserRepository.FindAll().FirstOrDefault();
+            User user = _userService.GetUserById((int)loggedInUserId);
             user.Posts.Add(post);
 
             _repositoryWrapper.UserRepository.Update(user);

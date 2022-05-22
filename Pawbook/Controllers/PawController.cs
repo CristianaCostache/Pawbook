@@ -28,9 +28,9 @@ namespace Pawbook.Controllers
             return View(paws);
         }
 
-        public IActionResult Create(int postId)
+        public IActionResult Create(int postId, int loggedInUserId)
         {
-            _pawService.AddPaw(postId);
+            _pawService.AddPaw(postId, loggedInUserId);
             return RedirectToAction("Feed", "Home");
         }
     }

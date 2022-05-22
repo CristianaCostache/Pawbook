@@ -33,9 +33,9 @@ namespace Pawbook.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromForm] Comment comment, int postId)
+        public IActionResult Create([FromForm] Comment comment, int postId, int loggedInUserId)
         {
-            _commentService.AddComment(comment, postId);
+            _commentService.AddComment(comment, postId, loggedInUserId);
             return RedirectToAction("Feed", "Home");
         }
     }

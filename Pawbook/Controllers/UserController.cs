@@ -16,11 +16,13 @@ namespace Pawbook.Controllers
     {
         private readonly PawbookContext _context;
         private readonly IUserService _userService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserController(PawbookContext context, IUserService userService)
+        public UserController(PawbookContext context, IUserService userService, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _userService = userService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: Users
@@ -110,7 +112,16 @@ namespace Pawbook.Controllers
             }
             User dbUser = _userService.GetUserByEmail(user.Email);
 
-            TempData["LoggedInUserId"] = dbUser.UserId;
+            //TempData["LoggedInUserId"] = dbUser.UserId;
+            HttpContext.Session.SetInt32("LoggedInUserId", dbUser.UserId);
+            
+            return RedirectToAction("Feed", "Home");
+        }
+
+        // POST: Users/Logout
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
 
             return RedirectToAction("Feed", "Home");
         }

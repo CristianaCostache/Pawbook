@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -13,40 +16,48 @@
 	<link rel="stylesheet" href="~/Pawbook.styles.css" asp-append-version="true" />
 </head>
 <body class="body">
-	<header>
-		<nav class="navbar sticky-top navbar-dark bg-info navbar-expand-md bg-faded justify-content-center" style="padding: 10px;">
-			<div class="row">
-				<div class="col md-4">
-					<a asp-controller="Home" asp-action="Feed">
-						<img src="~/img/logo.png" class="d-inline-block ui-w-40 rounded-circle" alt="logo">
-					</a>
-				</div>
-				<div class="col md-4 flex-grow-2 my-auto">
-					<a class="navbar-brand d-flex w-10 mr-auto" asp-controller="Home" asp-action="Feed">Pawbook</a>
-				</div>
-			</div>
-			<div class="navbar-collapse">
-				<ul class="nav navbar-nav ml-auto w-100 justify-content-end">
-					<li class="nav-item">
-						<a class="nav-link active" asp-controller="Post" asp-action="Create">Add a new Post</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" asp-controller="User" asp-action="Search">Find a PAWL</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" asp-controller="Home" asp-action="Feed">Feed</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" asp-controller="Home" asp-action="Profile" asp-route-userId=1 asp-route-isLoggedUser=1>Profile</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" asp-controller="Home" asp-action="AboutUs">About us</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
+	@if (@HttpContextAccessor.HttpContext.Session.GetInt32("LoggedInUserId") != null)
+	{
+		var loggedInUserId = @HttpContextAccessor.HttpContext.Session.GetInt32("LoggedInUserId");
 
-	</header>
+		<header>
+			<nav class="navbar sticky-top navbar-dark bg-info navbar-expand-md bg-faded justify-content-center" style="padding: 10px;">
+				<div class="row">
+					<div class="col md-4">
+						<a asp-controller="Home" asp-action="Feed">
+							<img src="~/img/logo.png" class="d-inline-block ui-w-40 rounded-circle" alt="logo">
+						</a>
+					</div>
+					<div class="col md-4 flex-grow-2 my-auto">
+						<a class="navbar-brand d-flex w-10 mr-auto" asp-controller="Home" asp-action="Feed">Pawbook</a>
+					</div>
+				</div>
+				<div class="navbar-collapse">
+					<ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+						<li class="nav-item">
+							<a class="nav-link active" asp-controller="Post" asp-action="Create">Add a new Post</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" asp-controller="User" asp-action="Search">Find a PAWL</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" asp-controller="Home" asp-action="Feed">Feed</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" asp-controller="Home" asp-action="Profile" asp-route-userId=@loggedInUserId asp-route-isLoggedUser=1>Profile</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" asp-controller="Home" asp-action="AboutUs">About us</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" asp-controller="User" asp-action="Logout">Log out</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+	}
+
 	<div class="container">
 		<main role="main" class="pb-3">
 			@RenderBody()
