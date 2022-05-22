@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2QgWBpEf4VEK7GO88FZ9sBxagpu23nRfE8m0strXr3g=",
+  "Hash": "EDDV4qaASFhXjU2/CafF++ZVRrl6pF0IRm28VsWFaLc=",
   "Source": "Pawbook",
   "BasePath": "_content/Pawbook",
   "Mode": "Default",
@@ -508,6 +508,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\profile\\DSC01466_220521180357.JPG"
+    },
+    {
+      "Identity": "C:\\Users\\CRISTIANA\\source\\repos\\Pawbook\\Pawbook\\wwwroot\\img\\profile\\DSC01466_220522120451.JPG",
+      "SourceId": "Pawbook",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CRISTIANA\\source\\repos\\Pawbook\\Pawbook\\wwwroot\\",
+      "BasePath": "_content/Pawbook",
+      "RelativePath": "img/profile/DSC01466_220522120451.JPG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\profile\\DSC01466_220522120451.JPG"
     },
     {
       "Identity": "C:\\Users\\CRISTIANA\\source\\repos\\Pawbook\\Pawbook\\wwwroot\\img\\profile\\profile_pic_1.jpg",

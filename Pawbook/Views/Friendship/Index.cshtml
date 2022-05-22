@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Pawbook.Models.Friendship>
+
+@{
+	ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="~/css/feed.css" asp-append-version="true" />
+
+<div class="container">
+	<div class="mx-5 my-3">
+		<h3>PAWs</h3>
+	</div>
+	<div class="mx-5 my-3">
+		<div class="row d-flex justify-content-between">
+			@foreach (var friendship in Model)
+			{
+				<div class="card col-md-4">
+					<div class="card-body">
+						<div class="media d-flex justify-content-between">
+							<div>
+								<a asp-controller="Home" asp-action="Profile" asp-route-userId=@friendship.FriendId class="a">
+									<img src="@Url.Content("~/img/profile/" + friendship.Friend.ImageName)" class="d-inline-block ui-w-40 rounded-circle" alt="">
+									<div class="media-body ml-3 d-inline-block">
+										<div class="ms-3">
+											@Html.DisplayFor(modelItem => friendship.Friend.Name)
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>

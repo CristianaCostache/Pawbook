@@ -10,6 +10,7 @@ namespace Pawbook.Repositories
         private IPostRepository? _postRepository;
         private IPawRepository? _pawRepository;
         private ICommentRepository? _commentRepository;
+        private IFriendshipRepository? _friendshipRepository;
 
         public IUserRepository UserRepository
         {
@@ -60,6 +61,19 @@ namespace Pawbook.Repositories
                 }
 
                 return _commentRepository;
+            }
+        }
+
+        public IFriendshipRepository FriendshipRepository
+        {
+            get
+            {
+                if (_friendshipRepository == null)
+                {
+                    _friendshipRepository = new FriendshipRepository(_pawbookContext);
+                }
+
+                return _friendshipRepository;
             }
         }
 

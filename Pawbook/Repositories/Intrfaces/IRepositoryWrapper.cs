@@ -6,6 +6,7 @@
         IPostRepository PostRepository { get; }
         IPawRepository PawRepository { get; }
         ICommentRepository CommentRepository { get; }
+        IFriendshipRepository FriendshipRepository { get; }
         void Save();
     }
 }

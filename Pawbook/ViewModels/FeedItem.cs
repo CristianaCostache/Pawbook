@@ -10,5 +10,6 @@ namespace Pawbook.ViewModels
         public int PawsNumber { get; set; }
         public int CommentsNumber { get; set; }
         public bool pawed { get; set; }
+        public bool alreadyFriends { get; set; }
     }
 }

@@ -31,6 +31,9 @@ builder.Services.AddScoped<IPawService, PawService>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 
+builder.Services.AddScoped<IFriendshipRepository, FriendshipRepository>();
+builder.Services.AddScoped<IFriendshipService, FriendshipService>();
+
 builder.Services.AddScoped<IFeedItemService, FeedItemService>();
 
 builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();

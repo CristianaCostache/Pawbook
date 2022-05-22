@@ -12,14 +12,18 @@ namespace Pawbook.Services
         private IPawService _pawService;
         private ICommentService _commentService;
         private IUserService _userService;
+        private IFriendshipService _friendshipService;
 
-        public FeedItemService(IRepositoryWrapper repositoryWrapper, IPostService postService, IPawService pawService, ICommentService commentService, IUserService userService)
+        public FeedItemService(IRepositoryWrapper repositoryWrapper, IPostService postService, 
+            IPawService pawService, ICommentService commentService, IUserService userService,
+            IFriendshipService friendshipService)
         {
             _repositoryWrapper = repositoryWrapper;
             _postService = postService;
             _pawService = pawService;
             _commentService = commentService;
             _userService = userService;
+            _friendshipService = friendshipService;
         }
 
         public List<FeedItem> GetAll(int? loggedInUserId)
@@ -52,6 +56,7 @@ namespace Pawbook.Services
             List<FeedItem> feedItems = new List<FeedItem>();
             FeedItem feedItem = new FeedItem();
             feedItem.User = user;
+            feedItem.alreadyFriends = _friendshipService.IsFriendWith(userId);
             feedItems.Add(feedItem);
             foreach (Post post in posts)
             {
