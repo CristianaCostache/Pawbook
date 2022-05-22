@@ -266,3 +266,4 @@ C:\Users\CRISTIANA\source\repos\Pawbook\Pawbook\bin\Debug\net6.0\Microsoft.OpenA
 C:\Users\CRISTIANA\source\repos\Pawbook\Pawbook\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\CRISTIANA\source\repos\Pawbook\Pawbook\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\CRISTIANA\source\repos\Pawbook\Pawbook\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\CRISTIANA\source\repos\Pawbook\Pawbook\bin\Debug\net6.0\BCrypt.Net-Next.dll

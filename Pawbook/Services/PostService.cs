@@ -21,9 +21,19 @@ namespace Pawbook.Services
         {
             addImage(post);
             User user = _userService.GetUserById((int)loggedInUserId);
+            post.Status = Post.POST_STATUS_AVAILABLE;
             user.Posts.Add(post);
 
             _repositoryWrapper.UserRepository.Update(user);
+            _repositoryWrapper.Save();
+        }
+
+        public void Delete(int postId)
+        {
+            Post post = GetById(postId);
+            post.Status = Post.POST_STATUS_DELETED;
+
+            _repositoryWrapper.PostRepository.Update(post);
             _repositoryWrapper.Save();
         }
 
@@ -35,7 +45,7 @@ namespace Pawbook.Services
 
         public List<Post> GetByUserId(int userId)
         {
-            List<Post> posts = _repositoryWrapper.PostRepository.FindByCondition(post => post.UserId == userId).ToList();
+            List<Post> posts = _repositoryWrapper.PostRepository.FindByCondition(post => post.UserId == userId && post.Status == Post.POST_STATUS_AVAILABLE).ToList();
             return posts;
         }
 

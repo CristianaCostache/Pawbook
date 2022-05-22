@@ -50,10 +50,10 @@
 						</div>
 					</div>
 					<div class="btn-group">
-						@if (@Model.First().User.UserId == 5)
+						@if (@Model.First().User.UserId == @HttpContextAccessor.HttpContext.Session.GetInt32("LoggedInUserId"))
 						{
 							<a asp-controller="User" asp-action="Edit" asp-route-id=@Model.First().User.UserId class="btn btn-success">
-								Modify profile
+								Change profile picture
 							</a>
 						}
 						<button type="button" class="btn btn-outline-success ">Follow</button>
@@ -89,6 +89,14 @@
 											</div>
 										</a>
 									</div>
+									@if (@feedItem.User.UserId == @HttpContextAccessor.HttpContext.Session.GetInt32("LoggedInUserId"))
+									{
+										<div>
+											<a asp-controller="Post" asp-action="Delete" asp-route-postId=@feedItem.Post.PostId class="a">
+												<i class="fa-solid fa-xmark"></i>
+											</a>
+										</div>
+									}
 								</div>
 								<p>
 									@Html.DisplayFor(modelItem => feedItem.Post.Description)

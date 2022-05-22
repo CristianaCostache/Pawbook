@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "rZPAxfuDrC0YiOe5lymZXGHFuLntsvuF+1zRKiWFL9NtqXK6zJrkzfaGqbSK6eg/8htemZUzTJcWKrt/3dplVQ==",
+  "dgSpecHash": "jDnvl7VoBrjiUO+1+wbj82YobcqKhPdwwEtoVN6rznF/Q/d3Adw1aAcHojwgcKpCutrAk4gpr1RWdFyYXto/Eg==",
   "success": true,
   "projectFilePath": "C:\\Users\\CRISTIANA\\source\\repos\\Pawbook\\Pawbook\\Pawbook.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\CRISTIANA\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\CRISTIANA\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\CRISTIANA\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\CRISTIANA\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

@@ -32,6 +32,14 @@
 									</div>
 								</a>
 							</div>
+							@if (@HttpContextAccessor.HttpContext.Session.GetString("LoggedInUserRole") == "Admin")
+							{
+								<div>
+									<a asp-controller="Post" asp-action="Delete" asp-route-postId=@feedItem.Post.PostId class="a">
+										<i class="fa-solid fa-xmark"></i>
+									</a>
+								</div>
+							}
 						</div>
 						<p>
 							@Html.DisplayFor(modelItem => feedItem.Post.Description)
@@ -44,8 +52,8 @@
 								@if (feedItem.PawsNumber > 0)
 								{
 									<a asp-controller="Paw" asp-action="Index" asp-route-postId=@feedItem.Post.PostId class="a">
-									@Html.DisplayFor(modelItem => feedItem.PawsNumber) Paws
-								</a>
+										@Html.DisplayFor(modelItem => feedItem.PawsNumber) Paws
+									</a>
 								}
 								else
 								{

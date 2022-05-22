@@ -37,7 +37,10 @@ namespace Pawbook.Services
         public bool PasswordMatch(User user)
         {
             User dbUser = _repositoryWrapper.UserRepository.FindByCondition(userItem => userItem.Email == user.Email).FirstOrDefault();
-            if (dbUser.Password == user.Password)
+            
+            bool verified = BCrypt.Net.BCrypt.Verify(user.Password, dbUser.Password);
+            
+            if (verified)
             {
                 return true;
             }
@@ -55,6 +58,9 @@ namespace Pawbook.Services
                 user.UserRole = User.USER_ROLE_USER;
             }
 
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            user.Password = passwordHash;
+
             addImage(user);
             _repositoryWrapper.UserRepository.Create(user);
             _repositoryWrapper.Save();
@@ -63,7 +69,11 @@ namespace Pawbook.Services
         public void Update(User user)
         {
             addImage(user);
-            _repositoryWrapper.UserRepository.Update(user);
+
+            User dbUser = GetUserById(user.UserId);
+            dbUser.ImageName = user.ImageName;
+
+            _repositoryWrapper.UserRepository.Update(dbUser);
             _repositoryWrapper.Save();
         }
 

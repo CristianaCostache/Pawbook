@@ -27,7 +27,7 @@ namespace Pawbook.Services
             User user = _userService.GetUserById((int)loggedInUserId);
 
             List<FeedItem> feedItems = new List<FeedItem>();
-            List<Post> posts = _repositoryWrapper.PostRepository.FindAll().ToList();
+            List<Post> posts = _repositoryWrapper.PostRepository.FindByCondition(postItem => postItem.Status == Post.POST_STATUS_AVAILABLE).ToList();
             posts.Reverse();
             foreach (Post post in posts)
             {

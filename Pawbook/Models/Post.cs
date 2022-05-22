@@ -10,6 +10,8 @@ namespace Pawbook.Models
             Comments = new List<Comment>();
         }
 
+        public const string POST_STATUS_AVAILABLE = "available";
+        public const string POST_STATUS_DELETED = "deleted";
         public int PostId { get; set; }
         public string Description { get; set; }
         public string ImageName { get; set; }
@@ -20,5 +22,6 @@ namespace Pawbook.Models
         
         [NotMapped]
         public IFormFile ImageFile { get; set; }
+        public string Status { get; set; }
     }
 }

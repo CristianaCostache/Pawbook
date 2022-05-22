@@ -7,5 +7,6 @@ namespace Pawbook.Services.Interfaces
         void AddPost(Post post, int? loggedInUserId);
         Post GetById(int id);
         List<Post> GetByUserId(int userId);
+        void Delete(int postId);
     }
 }

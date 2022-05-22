@@ -112,9 +112,9 @@ namespace Pawbook.Controllers
             }
             User dbUser = _userService.GetUserByEmail(user.Email);
 
-            //TempData["LoggedInUserId"] = dbUser.UserId;
             HttpContext.Session.SetInt32("LoggedInUserId", dbUser.UserId);
-            
+            HttpContext.Session.SetString("LoggedInUserRole", dbUser.UserRole);
+
             return RedirectToAction("Feed", "Home");
         }
 

@@ -34,5 +34,11 @@ namespace Pawbook.Controllers
             _postService.AddPost(post, loggedInUserId);
             return RedirectToAction("Feed", "Home");
         }
+
+        public IActionResult Delete(int postId)
+        {
+            _postService.Delete(postId);
+            return RedirectToAction("Feed", "Home");
+        }
     }
 }
