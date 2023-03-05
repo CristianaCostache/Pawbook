@@ -6,6 +6,6 @@ namespace Pawbook.Services.Interfaces
     {
         void AddFriendship(int userId, int loggedInUserId);
         List<Friendship> GetFriendshipByUserId(int userId);
-        bool IsFriendWith(int userId);
+        bool IsFriendWith(int loggedInUserId, int userId);
     }
 }

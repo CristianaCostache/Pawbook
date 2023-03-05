@@ -46,3 +46,12 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+.navbar-dark {
+    background: rgb(40, 84, 48);
+}
+
+nav-link active:hover, nav-link active:focus {
+    background-color: #FFFF00;
+    color: #FFC0CB;
+}

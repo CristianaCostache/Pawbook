@@ -46,17 +46,25 @@ namespace Pawbook.Services
             return feedItems;
         }
 
-        public List<FeedItem> GetByUser(int userId, int isLoggedUser = 0)
+        public List<FeedItem> GetByUser(int userId, int? loggedInUserId, int isLoggedUser = 0)
         {
-            User user = new User();
-            user = _repositoryWrapper.UserRepository.FindByCondition(user =>user.UserId == userId).FirstOrDefault();
+            User user;
+
+            if (isLoggedUser == 1)
+            {
+                user = _userService.GetUserById((int)loggedInUserId);
+            }
+            else
+            {
+                user = _userService.GetUserById(userId);
+            }
 
             List<Post> posts = _postService.GetByUserId(user.UserId);
             posts.Reverse();
             List<FeedItem> feedItems = new List<FeedItem>();
             FeedItem feedItem = new FeedItem();
             feedItem.User = user;
-            feedItem.alreadyFriends = _friendshipService.IsFriendWith(userId);
+            feedItem.alreadyFriends = _friendshipService.IsFriendWith((int)loggedInUserId, userId);
             feedItems.Add(feedItem);
             foreach (Post post in posts)
             {
@@ -65,7 +73,7 @@ namespace Pawbook.Services
                 feedItem.User = user;
                 feedItem.PawsNumber = _pawService.CountPawsByPostId(post.PostId);
                 feedItem.CommentsNumber = _commentService.CountCommentsByPostId(post.PostId);
-                feedItem.pawed = _pawService.IsPawedByUser(post.PostId, userId);
+                feedItem.pawed = _pawService.IsPawedByUser(post.PostId, (int)loggedInUserId);
                 feedItems.Add(feedItem);
             }
             return feedItems;

@@ -5,6 +5,6 @@ namespace Pawbook.Services.Interfaces
     public interface IFeedItemService
     {
         List<FeedItem> GetAll(int? loggedInUserId);
-        List<FeedItem> GetByUser(int userId, int isLoggedUser);
+        List<FeedItem> GetByUser(int userId, int? loggedInUserId, int isLoggedUser);
     }
 }

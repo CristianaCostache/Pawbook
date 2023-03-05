@@ -36,9 +36,9 @@ namespace Pawbook.Services
             return friendships;
         }
 
-        public bool IsFriendWith(int userId)
+        public bool IsFriendWith(int loggedInUserId, int userId)
         {
-            Friendship friendship = _repositoryWrapper.FriendshipRepository.FindByCondition(item => item.FriendId == userId).FirstOrDefault();
+            Friendship friendship = _repositoryWrapper.FriendshipRepository.FindByCondition(item => item.UserId == loggedInUserId && item.FriendId == userId).FirstOrDefault();
             if (friendship == null)
             {
                 return false;

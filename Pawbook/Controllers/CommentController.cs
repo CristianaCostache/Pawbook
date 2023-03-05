@@ -20,7 +20,6 @@ namespace Pawbook.Controllers
             var countComments = _commentService.CountCommentsByPostId(postId);
             if(countComments > 0)
             {
-
                 List<Comment> comments = _commentService.GetCommentsByPostId(postId);
                 return View(comments);
             }

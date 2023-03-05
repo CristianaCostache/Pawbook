@@ -61,12 +61,12 @@
 						}
 						else if (@Model.First().alreadyFriends == false)
 						{
-							<a asp-controller="Friendship" asp-action="Create" asp-route-userId=@Model.First().User.UserId asp-route-loggedInUserId=@loggedInUserId class="btn btn-outline-success">
+							<a asp-controller="Friendship" asp-action="Create" asp-route-userId=@Model.First().User.UserId asp-route-loggedInUserId=@loggedInUserId class="btn btn-success">
 								Follow
 							</a>
 						}
 						<a asp-controller="Friendship" asp-action="Index" asp-route-userId=@Model.First().User.UserId class="btn btn-outline-success">
-							Friends
+							Follows
 						</a>
 					</div>
 				</div>

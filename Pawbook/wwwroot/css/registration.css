@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(22, 153, 142));
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(40, 84, 48));
 }
 
 @media only screen and (max-width: 600px) {

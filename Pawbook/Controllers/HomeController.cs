@@ -30,7 +30,8 @@ namespace Pawbook.Controllers
 
         public IActionResult Profile(int userId, int isLoggedUser)
         {
-            List<FeedItem> feedItems = _feedItemService.GetByUser(userId, isLoggedUser);
+            var loggedInUserId = HttpContext.Session.GetInt32("LoggedInUserId");
+            List<FeedItem> feedItems = _feedItemService.GetByUser(userId, loggedInUserId, isLoggedUser);
             return View(feedItems);
         }
 
