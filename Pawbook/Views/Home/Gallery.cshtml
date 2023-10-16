@@ -1,0 +1,177 @@
+﻿@{
+	ViewData["Title"] = "Gallery";
+}
+@using System.IO.Compression
+@using System.Text
+
+
+<div class="w-100">
+
+	<div class="container-fluid my-3 feeditem">
+		<div class="card col-md">
+			<div class="card-body">
+				<h2 class="card-title" id="meet">Let's <span class="text-success">meet</span> out little friends!</h2>
+				<div class="row">
+					<hr class="hr text-success" />
+				</div>
+				<!-- Gallery -->
+				<div class="row">
+					<div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+						<div data-bs-toggle="modal" data-bs-target="#imageModal1">
+							<img src="/img/gallery/hamster.png"
+								 class="w-100 shadow-1-strong rounded mb-4"
+								 alt="Waves at Sea"/>
+						</div>
+						<div data-bs-toggle="modal" data-bs-target="#imageModal2">
+							<img src="/img/gallery/otter_small.jpg"
+								 class="w-100 shadow-1-strong rounded mb-4 img-blur"
+								 alt="Wintry Mountain Landscape"/>
+						</div>
+						<div class="row">
+							<hr class="hr text-success" />
+						</div>
+@*						<audio controls>
+						  <source src="/sound/domestic_cat.mp3" type="audio/mpeg">
+						</audio>*@
+					</div>
+
+					<div class="col-lg-4 mb-4 mb-lg-0">
+						<div data-bs-toggle="modal" data-bs-target="#imageModal3">
+							<img src="/img/gallery/cat.png"
+								 class="w-100 shadow-1-strong rounded mb-4 img-rotate"
+								 alt="Wintry Mountain Landscape" />
+						</div>
+						<div>
+							<img src="/img/gallery/duck.jpg"
+								 class="w-100 shadow-1-strong rounded"
+								 alt="Wintry Mountain Landscape" />
+						</div>
+					</div>
+
+					<div class="col-lg-4 mb-4 mb-lg-0">
+						<div data-bs-toggle="modal" data-bs-target="#imageModal5">
+							<img src="/img/gallery/turtle.png"
+								 class="w-100 shadow-1-strong rounded mb-4 img-crop"
+								 alt="Waves at Sea" />
+						</div>
+						<div data-bs-toggle="modal" data-bs-target="#imageModal6">
+							<img src="/img/gallery/rabbit_small.jpg"
+								 class="w-100 shadow-1-strong rounded mb-4 img-scale"
+								 alt="Yosemite National Park"/>
+						</div>
+						<div class="row">
+							<hr class="hr text-success" />
+						</div>
+@*						<audio controls>
+						  <source src="/sound/dogbark.wav" type="audio/mpeg">
+						</audio>*@
+					</div>
+				</div>
+				<!-- Gallery -->
+
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="imageModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-paw"></i></h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+					<div class="container-fluid">
+						<div class="ratio ratio-16x9">
+							<iframe src="https://www.youtube.com/embed/rkZ6gzyg7yY?start=8" title="YouTube video player" allowfullscreen></iframe>
+						</div>
+					</div>
+
+				</div>
+@*				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>*@
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="imageModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-paw"></i></h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+							<img class="w-100" src="/img/gallery/otter.jpg"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="imageModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-paw"></i></h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+					<div class="container-fluid">
+						<div class="ratio ratio-16x9">
+							<iframe src="https://www.youtube.com/embed/suaCbX5ji24?start=11" title="YouTube video player" allowfullscreen></iframe>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="imageModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-paw"></i></h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+					<div class="container-fluid">
+						<div class="ratio ratio-16x9">
+							<iframe src="https://www.youtube.com/embed/VReCpkav3RY?start=163" title="YouTube video player" allowfullscreen></iframe>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="imageModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-paw"></i></h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+					<div class="container-fluid">
+						<div class="container-fluid">
+								<img class="w-100" src="/img/gallery/rabbit.jpg"/>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>

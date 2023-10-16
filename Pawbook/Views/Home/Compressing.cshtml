@@ -1,0 +1,72 @@
+﻿@{
+	ViewData["Title"] = "Compressing";
+}
+@using System.IO.Compression
+@using System.Text
+
+
+<div class="w-100">
+
+	
+	<div class="container-fluid my-3 feeditem">
+		<div class="card col-md">
+			<div class="card-body">
+				<h2 class="card-title">Compressing and Decompressing using LZW</h2>
+				<div class="row">
+					<hr class="hr text-success" />
+				</div>
+<p>Compressing:</p>
+@{
+    string inputString = "Pawbook is about giving pets the power to create space to find belonging in their lives";
+
+	<p><b>Input string:</b> @inputString</p>
+
+    byte[] inputBytes = Encoding.UTF8.GetBytes(inputString);
+
+    using (MemoryStream outputStream = new MemoryStream())
+    {
+        using (DeflateStream deflateStream = new DeflateStream(outputStream, CompressionLevel.Optimal))
+        {
+            deflateStream.Write(inputBytes, 0, inputBytes.Length);
+        }
+
+        byte[] outputBytes = outputStream.ToArray();
+        string compressedString = Convert.ToBase64String(outputBytes);
+
+        // Use the compressedString in your HTML or pass it to a controller action
+
+		<p><b>Compressed string: </b>@compressedString</p>
+	}
+}
+
+<p>Decompressing:</p>
+@{
+    string compressedString2 = "FctRDoAgDATRq+yRvELBFRtNS2iF6xs+J3lzyCruDzQgxb9E06nW0JmBvInuiwPpqIOSRHSp3H2pnSh83doe1DbXgVcn4wc=";
+
+	<p><b>Input string:</b> @compressedString2</p>
+
+    byte[] inputBytes2 = Convert.FromBase64String(compressedString2);
+
+    using (MemoryStream inputStream = new MemoryStream(inputBytes2))
+    {
+        using (DeflateStream deflateStream = new DeflateStream(inputStream, CompressionMode.Decompress))
+        {
+            using (MemoryStream outputStream = new MemoryStream())
+            {
+                deflateStream.CopyTo(outputStream);
+                byte[] outputBytes = outputStream.ToArray();
+                string decompressedString = Encoding.UTF8.GetString(outputBytes);
+
+                // Use the decompressedString in your HTML or pass it to a controller action
+
+				<p><b>Decompressed string: </b>@decompressedString</p>
+            }
+        }
+    }
+}
+
+			</div>
+		</div>
+	</div>
+
+</div>

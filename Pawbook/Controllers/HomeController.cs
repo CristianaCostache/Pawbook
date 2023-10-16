@@ -40,6 +40,21 @@ namespace Pawbook.Controllers
             return View();
         }
 
+        public IActionResult Gallery()
+        {
+            return View();
+        }
+
+        public IActionResult Sounds()
+        {
+            return View();
+        }
+
+        public IActionResult Compressing()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

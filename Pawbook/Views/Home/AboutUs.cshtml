@@ -1,38 +1,238 @@
 ﻿@{
 	ViewData["Title"] = "AboutUs";
 }
+@using System.IO.Compression
+@using System.Text
+
 
 <div class="w-100">
+
+    <div class="container-fluid my-3 feeditem">
+		<div class="card col-md">
+			<div class="card-body">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="~/img/carousel/dog_cat.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        @*<h5>First slide label</h5>*@
+                        <p>Pawbook is about giving pets the power to create space to find belonging in their lives</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="~/img/carousel/hamster.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        @*<h5>Second slide label</h5>*@
+                        <p>Now it is easier for owners to share the memories of their pets with people that care about the little ones</p>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="~/img/carousel/otters.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        @*<h5>Third slide label</h5>*@
+                        <p>Give people the power to build community and bring the world closer together</p>
+                      </div>
+                    </div>
+					<div class="carousel-item">
+                      <img src="~/img/carousel/rabbit.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        @*<h5>Third slide label</h5>*@
+                        <p>Pawbook is about giving pets the power to create space to find belonging in their lives</p>
+                      </div>
+                    </div>
+					<div class="carousel-item">
+                      <img src="~/img/carousel/tortoise.jpg" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        @*<h5>Third slide label</h5>*@
+                        <p>Now it is easier for owners to share the memories of their pets with people that care about the little ones</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+			</div>
+		</div>
+	</div>
+
+
 	<div class="container-fluid my-3 feeditem">
 		<div class="card col-md">
 			<div class="card-body">
 				<h2 class="card-title">About us</h2>
-				<h5>Pawbook - where the pets hang out!</h5>
-				<p>
-					&emsp; &emsp; <i class="fa-solid fa-paw"></i> Pawbook is about giving pets the power to create space to find belonging in their lives. We want to make it easier for their owners to share the memories of their pets with people that
-					also care about the little ones.
-				</p>
-				<p>
-					&emsp; &emsp; <i class="fa-solid fa-paw"></i> The owner can create an account for their pet and enjoy sharing memories with the community. Every pet has a profile page that includes their profile photo and some information about
-					them. Also, from here, the user can customize their profile or another user can press the follow button. Below, the posts of the user can be seen.
-				</p>
-				<p>
-					&emsp; &emsp; <i class="fa-solid fa-paw"></i> The interaction between pets is made on the feed page, where the user can see posts from other users and react with a Paw. From here, also, the user can submit a new post which can
-					contain a description and a photo.
-				</p>
-				<p>
-					&emsp; &emsp; <i class="fa-solid fa-paw"></i> The “Find a PAWL” button helps you find more paw friends (or pawl).
-				</p>
-				<h5>Keywords</h5>
-				<ul>
-					<li>
-						paw - reaction when a user enjoy a post
-					</li>
-					<li>
-						PAWL - a paw friend that has not been discovered yet
-					</li>
-				</ul>
+				<div class="row">
+					<hr class="hr text-success" />
+				</div>
+				<div class="row">
+					<div class="col md-7">
+						<h5>Pawbook - where the pets hang out!</h5>
+						<p>
+							&emsp; &emsp; <i class="fa-solid fa-paw"></i> Pawbook is about giving pets the power to create space to find belonging in their lives. We want to make it easier for their owners to share the memories of their pets with people that
+							also care about the little ones.
+						</p>
+						<p>
+							&emsp; &emsp; <i class="fa-solid fa-paw"></i> The owner can create an account for their pet and enjoy sharing memories with the community. Every pet has a profile page that includes their profile photo and some information about
+							them. Also, from here, the user can customize their profile or another user can press the follow button. Below, the posts of the user can be seen.
+						</p>
+						<p>
+							&emsp; &emsp; <i class="fa-solid fa-paw"></i> The interaction between pets is made on the feed page, where the user can see posts from other users and react with a Paw. From here, also, the user can submit a new post which can
+							contain a description and a photo.
+						</p>
+						<p>
+							&emsp; &emsp; <i class="fa-solid fa-paw"></i> The “Find a PAWL” button helps you find more paw friends (or pawl).
+						</p>
+						<h5>Keywords</h5>
+						<ul>
+							<li>
+								paw - reaction when a user enjoy a post
+							</li>
+							<li>
+								PAWL - a paw friend that has not been discovered yet
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-5">
+						<h5>Owner's podcast</h5>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="ratio ratio-16x9">
+								<iframe title="Podcast" frameborder="0" src="/video/podcast.mp4" allowfullscreen> </iframe>	
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+				<button class="btn btn-success btn-lg mx-4" id="read-button"><i class="fa-solid fa-universal-access"></i></button>
+				<button class="btn btn-danger btn-lg mx-4" id="stop-button"><i class="fa-solid fa-stop"></i></button>
+			
 			</div>
 		</div>
 	</div>
+
+@*	<div class="container-fluid my-3 feeditem">
+		<div class="card col-md">
+			<div class="card-body">
+				<a asp-controller="Home" asp-action="Gallery" class="btn btn-success btn-lg mx-4">Let's meet out little friends</a>
+			</div>
+		</div>
+	</div>*@
+
+
+	<div class="container-fluid my-3 feeditem">
+		<div class="card col-md">
+			<div class="card-body">
+				<h2 class="card-title">Advertisement</h2>
+				<div class="row">
+					<hr class="hr text-success" />
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="ratio ratio-16x9">
+						<iframe id="vp112AuU" title="Video Player" frameborder="0" 
+							src="https://s3.amazonaws.com/embed.animoto.com/play.html?w=swf/production/vp1&e=1679337232&f=12AuUZ91GpdEFPXrEAeY1A&d=0&m=p&r=360p+720p&volume=100&start_res=720p&i=m&asset_domain=s3-p.animoto.com&animoto_domain=animoto.com&options=" 
+							allowfullscreen>
+						</iframe>	
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="card-body">
+							<h5><a asp-controller="Home" asp-action="Gallery" class="btn btn-success btn-lg"><i class="bi bi-images"></i></a>  Let's <span class="text-success">meet</span> out little friends!</h5>
+						</div>
+						<hr class="hr text-success" />
+						<hr class="hr text-success" />
+						<div class="card-body">
+							<h5><a asp-controller="Home" asp-action="Compressing" class="btn btn-success btn-lg"><i class="bi bi-file-zip"></i></a>	 Let's see how the compressing works!</h5>
+						</div>
+						<hr class="hr text-success" />
+						<hr class="hr text-success" />
+						<div class="card-body">
+							<h5><a asp-controller="Home" asp-action="Sounds" class="btn btn-success btn-lg"><i class="bi bi-images"></i></a>  Let's <span class="text-success">hear</span> our little friends!</h5>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="container-fluid my-3 feeditem">
+		<div class="card col-md">
+			<div class="card-body">
+				<h2 class="card-title">You want to stay in touch with us?</h2>
+				<div class="row">
+					<hr class="hr text-success" />
+				</div>
+				<div class="row">
+					<div class="container col-md-6">
+						<div class="row justify-content-center">
+							<div class="card bg-light">
+								<div class="card-body">
+									<h3 class="card-title">Contact Us</h3>
+									<form id="contact-form">
+										<div class="form-group">
+											<label for="name">Name:</label>
+											<input type="text" name="name" id="name" class="form-control" required>
+										</div>
+										<div class="form-group">
+											<label for="email">Email:</label>
+											<input type="email" name="email" id="email" class="form-control" required>
+										</div>
+										<div class="form-group">
+											<label for="message">Message:</label>
+											<textarea name="message" id="message" class="form-control" rows="5" required></textarea>
+										</div>
+										<button type="submit" class="btn btn-primary my-2">Submit</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container col-md-6">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2855.0574171509656!2d23.83289141573878!3d44.308770117808756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4752d702cd0f3173%3A0xb159446a3e899375!2sFaculty%20of%20Automation%2C%20Computers%20and%20Electronics!5e0!3m2!1sen!2sro!4v1647550520070!5m2!1sen!2sro" style="border:0; width: 100%; height: 100%;" allowfullscreen="" loading="lazy"></iframe>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
 </div>
+
+<script>
+	document.getElementById("read-button").addEventListener("click", readText);
+
+	function readText() {
+	  const text = "About us Pawbook - where the pets hang out! Pawbook is about giving pets the power to create space to find belonging in their lives. We want to make it easier for their owners to share the memories of their pets with people that also care about the little ones. The owner can create an account for their pet and enjoy sharing memories with the community. Every pet has a profile page that includes their profile photo and some information about them. Also, from here, the user can customize their profile or another user can press the follow button. Below, the posts of the user can be seen. The interaction between pets is made on the feed page, where the user can see posts from other users and react with a Paw. From here, also, the user can submit a new post which can contain a description and a photo. The “Find a PAWL” button helps you find more paw friends (or pawl). Keywords paw - reaction when a user enjoy a post PAWL - a paw friend that has not been discovered yet Owner's podcast"; // replace with your own text
+	  const utterance = new SpeechSynthesisUtterance(text);
+	  speechSynthesis.speak(utterance);
+	}
+
+	document.getElementById("stop-button").addEventListener("click", stopReading);
+
+	function stopReading() {
+	  speechSynthesis.cancel();
+	}
+
+</script>

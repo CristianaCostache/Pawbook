@@ -22,6 +22,7 @@
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\img\post\" />
     <Folder Include="wwwroot\img\profile\" />
+    <Folder Include="wwwroot\video\" />
   </ItemGroup>
 
 </Project>

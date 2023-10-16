@@ -18,10 +18,107 @@ html {
   min-height: 100%;
 }
 
-body {
+/*body {
   margin-bottom: 60px;
-}
+}*/
 
 .body {
     background-color: rgb(229, 217, 182);
+}
+
+.sidebar {
+    position: sticky;
+    top: 70px;
+    width: 50px;
+    background: rgba(0,212,255,0);
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background-color: #285430;
+}
+
+.sticky-sidebar {
+    flex: 0 0 100px;
+}
+
+.sidebar > hr {
+    margin: 0px;
+}
+
+.sidebar-link {
+    font-size: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    color: black;
+    display: block;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+
+.sidebar-link:hover {
+    background: darkgray;
+    color: white;
+}
+
+.main {
+    flex: 1;
+}
+
+.header {
+    height: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+    background-image: url("/img/header3.jpg");
+    background-size: cover;
+    background-position: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+    /*-webkit-text-stroke: 1px grey;*/
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.img-blur {
+    transition: webkit-filter 0.5s ease-out 10ms, filter 0.5s ease-out 10ms
+}
+
+.img-blur:hover {
+    webkit-filter: blur(4px);
+    filter: blur(4px);
+}
+
+.img-scale {
+    transition: transform 0.5s ease-out 10ms, -ms-transform 0.5s ease-out 10ms, -webkit-transform 0.5s ease-out 10ms
+}
+
+.img-scale:hover {
+    transform: scale(0.5, 0.5);
+    -ms-transform: scale(0.5, 0.5);
+    -webkit-transform: scale(0.5, 0.5);
+}
+
+.img-rotate {
+    transition: transform 0.5s ease-out 10ms
+}
+
+.img-rotate:hover {
+    transform: rotate(360deg);
+}
+
+.img-crop {
+    transition: width 0.5s ease-out 10ms, height 0.5s ease-out 10ms, object-fit 0.5s ease-out 10ms
+}
+
+.img-crop:hover {
+    width: 250px;
+    height: 250px;
+    object-fit: none
 }

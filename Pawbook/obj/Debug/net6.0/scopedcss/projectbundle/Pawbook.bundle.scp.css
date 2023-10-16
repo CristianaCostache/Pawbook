@@ -40,13 +40,13 @@ button.accept-policy[b-3hmjmf0bep] {
   line-height: inherit;
 }
 
-.footer[b-3hmjmf0bep] {
+/*.footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
-}
+}*/
 
 .navbar-dark[b-3hmjmf0bep] {
     background: rgb(40, 84, 48);
@@ -55,4 +55,8 @@ button.accept-policy[b-3hmjmf0bep] {
 nav-link active:hover[b-3hmjmf0bep], nav-link active:focus[b-3hmjmf0bep] {
     background-color: #FFFF00;
     color: #FFC0CB;
+}
+
+footer[b-3hmjmf0bep] {
+    background-color: #285430;
 }
