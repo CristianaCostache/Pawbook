@@ -51,7 +51,7 @@ button.accept-policy {
     background: rgb(40, 84, 48);
 }
 
-nav-link active:hover, nav-link active:focus {
+nav-link {
     background-color: #FFFF00;
     color: #FFC0CB;
 }

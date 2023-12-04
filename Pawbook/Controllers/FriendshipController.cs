@@ -12,24 +12,24 @@ namespace Pawbook.Controllers
 {
     public class FriendshipController : Controller
     {
-        private readonly PawbookContext _context;
         private readonly IFriendshipService _friendshipService;
 
-        public FriendshipController(PawbookContext context, IFriendshipService friendshipService)
+        public FriendshipController(IFriendshipService friendshipService)
         {
-            _context = context;
             _friendshipService = friendshipService;
         }
 
         public IActionResult Index(int userId)
         {
             List<Friendship> friendships = _friendshipService.GetFriendshipByUserId(userId);
+
             return View(friendships);
         }
 
         public IActionResult Create(int userId, int loggedInUserId)
         {
             _friendshipService.AddFriendship(userId, loggedInUserId);
+
             return RedirectToAction("Feed", "Home");
         }
     }

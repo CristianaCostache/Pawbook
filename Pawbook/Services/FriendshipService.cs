@@ -6,13 +6,11 @@ namespace Pawbook.Services
 {
     public class FriendshipService : IFriendshipService
     {
-        private IRepositoryWrapper _repositoryWrapper;
-        private IUserService _userService;
+        private readonly IRepositoryWrapper _repositoryWrapper;
 
-        public FriendshipService(IRepositoryWrapper repositoryWrapper, IUserService userService)
+        public FriendshipService(IRepositoryWrapper repositoryWrapper)
         {
             _repositoryWrapper = repositoryWrapper;
-            _userService = userService;
         }
 
         public void AddFriendship(int userId, int loggedInUserId)
@@ -30,20 +28,18 @@ namespace Pawbook.Services
             List<Friendship> friendships = _repositoryWrapper.FriendshipRepository.FindByCondition(item => item.UserId == userId).ToList();
             foreach(Friendship friendship in friendships)
             {
-                User friend = _repositoryWrapper.UserRepository.FindByCondition(item => item.UserId == friendship.FriendId).FirstOrDefault();
+                User? friend = _repositoryWrapper.UserRepository.FindByCondition(item => item.UserId == friendship.FriendId).FirstOrDefault();
                 friendship.Friend = friend;
             }
+
             return friendships;
         }
 
         public bool IsFriendWith(int loggedInUserId, int userId)
         {
-            Friendship friendship = _repositoryWrapper.FriendshipRepository.FindByCondition(item => item.UserId == loggedInUserId && item.FriendId == userId).FirstOrDefault();
-            if (friendship == null)
-            {
-                return false;
-            }
-            return true;
+            Friendship? friendship = _repositoryWrapper.FriendshipRepository.FindByCondition(item => item.UserId == loggedInUserId && item.FriendId == userId).FirstOrDefault();
+
+            return friendship != null;
         }
     }
 }

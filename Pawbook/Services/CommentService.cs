@@ -6,9 +6,9 @@ namespace Pawbook.Services
 {
     public class CommentService : ICommentService
     {
-        private IRepositoryWrapper _repositoryWrapper;
-        private IPostService _postService;
-        private IUserService _userService;
+        private readonly IRepositoryWrapper _repositoryWrapper;
+        private readonly IPostService _postService;
+        private readonly IUserService _userService;
 
         public CommentService(IRepositoryWrapper repositoryWrapper, IPostService postService, IUserService userService)
         {
@@ -24,16 +24,30 @@ namespace Pawbook.Services
 
             comment.UserId = user.UserId;
             comment.User = user;
-            post.Comments.Add(comment);
+            post.Comments!.Add(comment);
 
             _repositoryWrapper.PostRepository.Update(post);
             _repositoryWrapper.Save();
         }
 
+        public void Update(Comment comment)
+        {
+            Comment dbComment = GetById(comment.CommentId);
+
+            _repositoryWrapper.CommentRepository.Update(dbComment);
+            _repositoryWrapper.Save();
+        }
+
+        public Comment GetById(int id)
+        {
+            return _repositoryWrapper.CommentRepository.FindByCondition(comment => comment.CommentId == id).First();
+        }
+
         public int CountCommentsByPostId(int postId)
         {
             List<Comment> comments = GetCommentsByPostId(postId);
-            return comments.Count();
+
+            return comments.Count;
         }
 
         public List<Comment> GetCommentsByPostId(int postId)
@@ -41,9 +55,10 @@ namespace Pawbook.Services
             List<Comment> comments = _repositoryWrapper.CommentRepository.FindByCondition(comment => comment.PostId == postId).ToList();
             foreach (Comment comment in comments)
             {
-                User user = _repositoryWrapper.UserRepository.FindByCondition(user => user.UserId == comment.UserId).FirstOrDefault();  // this will be modified
+                User? user = _repositoryWrapper.UserRepository.FindByCondition(user => user.UserId == comment.UserId).FirstOrDefault();
                 comment.User = user;
             }
+
             return comments;
         }
     }

@@ -4,18 +4,15 @@
 }
 
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
 }
 
 /*body {
@@ -87,11 +84,10 @@ html {
 }
 
 .img-blur {
-    transition: webkit-filter 0.5s ease-out 10ms, filter 0.5s ease-out 10ms
+    transition: 0.5s ease-out 10ms, filter 0.5s ease-out 10ms
 }
 
 .img-blur:hover {
-    webkit-filter: blur(4px);
     filter: blur(4px);
 }
 

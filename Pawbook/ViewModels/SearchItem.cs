@@ -4,6 +4,6 @@ namespace Pawbook.ViewModels
 {
     public class SearchItem
     {
-        public string searchTerm { get; set; }
+        public string? searchTerm { get; set; }
     }
 }

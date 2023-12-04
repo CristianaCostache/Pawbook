@@ -16,13 +16,11 @@ namespace Pawbook.Controllers
     {
         private readonly PawbookContext _context;
         private readonly IUserService _userService;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserController(PawbookContext context, IUserService userService, IHttpContextAccessor httpContextAccessor)
+        public UserController(PawbookContext context, IUserService userService)
         {
             _context = context;
             _userService = userService;
-            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: Users/Register
@@ -41,6 +39,7 @@ namespace Pawbook.Controllers
                 return View();
             }
             _userService.Register(user);
+
             return RedirectToAction("Feed", "Home");
         }
 
@@ -54,14 +53,16 @@ namespace Pawbook.Controllers
         [HttpPost]
         public IActionResult Login([FromForm] User user)
         {
-            if(_userService.UserExist(user) == false)
+            if(!_userService.UserExist(user))
             {
                 ModelState.AddModelError(string.Empty, "The email is not associated to a Pawbook account. Please register!");
+
                 return View();
             }
-            if (_userService.PasswordMatch(user) == false)
+            if (!_userService.PasswordMatch(user))
             {
                 ModelState.AddModelError(string.Empty, "Wrong password. Try again!");
+
                 return View();
             }
             User dbUser = _userService.GetUserByEmail(user.Email);
@@ -93,6 +94,7 @@ namespace Pawbook.Controllers
             {
                 return NotFound();
             }
+
             return View(user);
         }
 
@@ -105,6 +107,7 @@ namespace Pawbook.Controllers
                 return NotFound();
             }
             _userService.Update(user);
+
             return RedirectToAction("Feed", "Home");
         }
 
@@ -112,6 +115,7 @@ namespace Pawbook.Controllers
         public IActionResult Feed([FromForm] string searchString)
         {
             var users = _userService.GetUserByName(searchString);
+
             return View(users);
         }
 

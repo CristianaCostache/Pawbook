@@ -13,24 +13,24 @@ namespace Pawbook.Controllers
 {
     public class PawController : Controller
     {
-        private readonly PawbookContext _context;
         private readonly IPawService _pawService;
 
-        public PawController(PawbookContext context, IPawService pawService)
+        public PawController(IPawService pawService)
         {
-            _context = context;
             _pawService = pawService;
         }
 
         public IActionResult Index(int postId)
         {
             List<Paw> paws = _pawService.GetPawsByPostId(postId);
+
             return View(paws);
         }
 
         public IActionResult Create(int postId, int loggedInUserId)
         {
             _pawService.AddPaw(postId, loggedInUserId);
+
             return RedirectToAction("Feed", "Home");
         }
     }

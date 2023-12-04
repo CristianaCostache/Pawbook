@@ -6,23 +6,23 @@ namespace Pawbook.Controllers
 {
     public class CommentController : Controller
     {
-        private readonly PawbookContext _context;
         private readonly ICommentService _commentService;
 
-        public CommentController(PawbookContext context, ICommentService commentService)
+        public CommentController(ICommentService commentService)
         {
-            _context = context;
             _commentService = commentService;
         }
 
         public IActionResult Index(int postId)
         {
             var countComments = _commentService.CountCommentsByPostId(postId);
-            if(countComments > 0)
+            if (countComments > 0)
             {
                 List<Comment> comments = _commentService.GetCommentsByPostId(postId);
+
                 return View(comments);
             }
+
             return new EmptyResult();
         }
 
@@ -35,6 +35,7 @@ namespace Pawbook.Controllers
         public IActionResult Create([FromForm] Comment comment, int postId, int loggedInUserId)
         {
             _commentService.AddComment(comment, postId, loggedInUserId);
+
             return RedirectToAction("Feed", "Home");
         }
     }

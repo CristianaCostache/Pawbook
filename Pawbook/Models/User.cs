@@ -24,25 +24,25 @@ namespace Pawbook.Models
         public const string USER_ROLE_USER = "User";
         public int UserId { get; set; }
 
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         [NotMapped]
         [Compare("Password", ErrorMessage = "Confirm password doesn't match, type again!")]
-        public string ConfirmPassword { get; set; }
-        public string UserRole { get; set; }
+        public string? ConfirmPassword { get; set; }
+        public string? UserRole { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string OwnerName { get; set; }
+        public string? OwnerName { get; set; }
 
         public Gender Gender { get; set; }
 
         public Type Type { get; set; }
 
-        public string ImageName { get; set; }
+        public string? ImageName { get; set; }
 
         public ICollection<Post>? Posts { get; set; }
 
@@ -51,6 +51,6 @@ namespace Pawbook.Models
         public virtual ICollection<Hatership>? Haterships { get; set; }
 
         [NotMapped]
-        public IFormFile ImageFile { get; set; }
+        public IFormFile? ImageFile { get; set; }
     }
 }

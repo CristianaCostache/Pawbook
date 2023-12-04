@@ -5,7 +5,7 @@ namespace Pawbook.Repositories
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
-        private PawbookContext _pawbookContext;
+        private readonly PawbookContext _pawbookContext;
         private IUserRepository? _userRepository;
         private IPostRepository? _postRepository;
         private IPawRepository? _pawRepository;

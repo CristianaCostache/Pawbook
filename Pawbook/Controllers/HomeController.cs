@@ -8,12 +8,10 @@ namespace Pawbook.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IFeedItemService _feedItemService;
 
-        public HomeController(ILogger<HomeController> logger, IFeedItemService feedItemService)
+        public HomeController(IFeedItemService feedItemService)
         {
-            _logger = logger;
             _feedItemService = feedItemService;
         }
 
@@ -23,8 +21,10 @@ namespace Pawbook.Controllers
             {
                 var loggedInUserId = HttpContext.Session.GetInt32("LoggedInUserId");
                 List<FeedItem> feedItems = _feedItemService.GetAll(loggedInUserId);
+
                 return View(feedItems);
             }
+
             return RedirectToAction("Login", "User");
         }
 
@@ -32,6 +32,7 @@ namespace Pawbook.Controllers
         {
             var loggedInUserId = HttpContext.Session.GetInt32("LoggedInUserId");
             List<FeedItem> feedItems = _feedItemService.GetByUser(userId, loggedInUserId, isLoggedUser);
+
             return View(feedItems);
         }
 

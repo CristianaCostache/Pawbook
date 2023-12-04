@@ -6,9 +6,9 @@ namespace Pawbook.Services
 {
     public class PostService : IPostService
     {
-        private IRepositoryWrapper _repositoryWrapper;
-        private IWebHostEnvironment _webHostEnvironment;
-        private IUserService _userService;
+        private readonly IRepositoryWrapper _repositoryWrapper;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IUserService _userService;
 
         public PostService(IRepositoryWrapper repositoryWrapper, IWebHostEnvironment webHostEnvironment, IUserService userService)
         {
@@ -20,9 +20,9 @@ namespace Pawbook.Services
         public void AddPost(Post post, int? loggedInUserId)
         {
             addImage(post);
-            User user = _userService.GetUserById((int)loggedInUserId);
+            User user = _userService.GetUserById((int)loggedInUserId!);
             post.Status = Post.POST_STATUS_AVAILABLE;
-            user.Posts.Add(post);
+            user.Posts!.Add(post);
 
             _repositoryWrapper.UserRepository.Update(user);
             _repositoryWrapper.Save();
@@ -33,26 +33,23 @@ namespace Pawbook.Services
             Post post = GetById(postId);
             post.Status = Post.POST_STATUS_DELETED;
 
-            _repositoryWrapper.PostRepository.Update(post);
-            _repositoryWrapper.Save();
+            UpdateDbPost(post);
         }
 
         public Post GetById(int id)
         {
-            Post post = _repositoryWrapper.PostRepository.FindByCondition(post => post.PostId == id).FirstOrDefault();
-            return post;
+            return _repositoryWrapper.PostRepository.FindByCondition(post => post.PostId == id).First();
         }
 
         public List<Post> GetByUserId(int userId)
         {
-            List<Post> posts = _repositoryWrapper.PostRepository.FindByCondition(post => post.UserId == userId && post.Status == Post.POST_STATUS_AVAILABLE).ToList();
-            return posts;
+            return _repositoryWrapper.PostRepository.FindByCondition(post => post.UserId == userId && post.Status == Post.POST_STATUS_AVAILABLE).ToList();
         }
 
         private void addImage(Post post)
         {
             string wwwRootPath = _webHostEnvironment.WebRootPath;
-            string fileName = Path.GetFileNameWithoutExtension(post.ImageFile.FileName);
+            string fileName = Path.GetFileNameWithoutExtension(post.ImageFile!.FileName);
             string extension = Path.GetExtension(post.ImageFile.FileName);
             post.ImageName = fileName = fileName + DateTime.Now.ToString("_yyMMddHHmmss") + extension;
             string path = Path.Combine(wwwRootPath + "/img/post/", fileName);
@@ -60,6 +57,18 @@ namespace Pawbook.Services
             {
                 post.ImageFile.CopyTo(fileStream);
             }
+        }
+
+        public void Update(Post post)
+        {
+            Post dbPost = GetById(post.PostId);
+            UpdateDbPost(dbPost);
+        }
+
+        private void UpdateDbPost(Post dbPost)
+        {
+            _repositoryWrapper.PostRepository.Update(dbPost);
+            _repositoryWrapper.Save();
         }
     }
 }
