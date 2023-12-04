@@ -9,7 +9,7 @@
 <p>
 	<a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table aria-label="post-table" class="table">
 	<thead>
 		<tr>
 			<th>
@@ -57,7 +57,7 @@
 						<div class="media mb-3 d-flex justify-content-between">
 							<div>
 								<a asp-controller="User" asp-action="Profile" class="a">
-									<img src=@Html.DisplayFor(modelItem => item.ImageName) class="d-inline-block ui-w-40 rounded-circle" alt="">
+									<img alt="user-profile" src=@Html.DisplayFor(modelItem => item.ImageName) class="d-inline-block ui-w-40 rounded-circle" alt="">
 									<div class="media-body ml-3 d-inline-block">
 										<div class="flex-grow-1 ms-3">
 											@Html.DisplayFor(modelItem => item.UserId)
@@ -72,7 +72,7 @@
 							@Html.DisplayFor(modelItem => item.ImageName)
 						</p>
 						<div class="card">
-							<img class="card-img-top" src="@Url.Content("~/img/post/" + @Html.DisplayFor(modelItem => item.ImageName))">
+							<img alt="post" class="card-img-top" src="@Url.Content("~/img/post/" + @Html.DisplayFor(modelItem => item.ImageName))">
 						</div>
 					</div>
 					<div class="card-footer">

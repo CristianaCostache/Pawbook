@@ -13,12 +13,10 @@ namespace Pawbook.Controllers
 {
     public class PostController : Controller
     {
-        private readonly PawbookContext _context;
         private readonly IPostService _postService;
 
-        public PostController(PawbookContext context, IPostService postService)
+        public PostController(IPostService postService)
         {
-            _context = context;
             _postService = postService;
         }
 
@@ -32,12 +30,14 @@ namespace Pawbook.Controllers
         {
             var loggedInUserId = HttpContext.Session.GetInt32("LoggedInUserId");
             _postService.AddPost(post, loggedInUserId);
+
             return RedirectToAction("Feed", "Home");
         }
 
         public IActionResult Delete(int postId)
         {
             _postService.Delete(postId);
+
             return RedirectToAction("Feed", "Home");
         }
     }

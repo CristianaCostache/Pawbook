@@ -9,7 +9,7 @@ namespace Pawbook.Repositories
     {
         protected PawbookContext pawbookContext { get; set; }
 
-        public RepositoryBase(PawbookContext pawbookContext)
+        protected RepositoryBase(PawbookContext pawbookContext)
         {
             this.pawbookContext = pawbookContext;
         }
